@@ -201,10 +201,14 @@ public class BlockEntry<T extends Block> extends RegEntry<T> implements ItemConv
         }
 
         public Builder<T> simpleItem() {
-            return item((builder, tBlockEntry) -> builder
+            return item((builder, tBlockEntry) -> {
+                builder
                     .constructor(settings -> new BlockItem(tBlockEntry.getValue(), settings))
-                    .translation(tBlockEntry.getTranslation())
-                    .model((itemItemEntry, itemModelGenerator) -> itemModelGenerator.output.accept(itemItemEntry.asItem(), ItemModels.basic(tBlockEntry.getKey().getValue().withPrefixedPath("block/")))));
+                    .translation(tBlockEntry.getTranslation());
+                if(FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT){
+                    builder.model((itemItemEntry, itemModelGenerator) -> itemModelGenerator.output.accept(itemItemEntry.asItem(), ItemModels.basic(tBlockEntry.getKey().getValue().withPrefixedPath("block/"))));
+                }
+            });
 
         }
 
