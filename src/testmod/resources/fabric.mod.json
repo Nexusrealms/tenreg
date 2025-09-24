@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "testmod",
+	"version": "${version}",
+	"name": "Tenreg Test Mod",
+	"description": "Register stuff",
+	"authors": [
+		"Farpo"
+	],
+	"contact": {
+		"homepage": "https://nexusrealms.de",
+		"sources": "https://github.com/Nexusrealms/tenreg"
+	},
+	"license": "MIT",
+	"icon": "assets/testmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"de.nexusrealms.tenreg.testmod.Testmod"
+		],
+		"fabric-datagen": [
+			"de.nexusrealms.tenreg.testmod.TestmodDataGenerator"
+		]
+	},
+	"mixins": [
+		"testmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

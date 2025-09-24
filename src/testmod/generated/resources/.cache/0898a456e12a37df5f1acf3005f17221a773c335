@@ -1,0 +1,4 @@
+// 1.21.8	-999999999-01-01T00:00:00	Tenreg Test Mod/Block Loot Tables
+f7b046327b4a1bfb24d70cef715d33cdfc9167de data/testmod/loot_table/blocks/test_block_1.json
+ee9e6b22978bac91f285bdbbbef222828dbcd13d data/testmod/loot_table/blocks/test_block_2.json
+e78ec3244a1da46d96ea3ad14136f447cc6dc474 data/testmod/loot_table/blocks/test_block_3.json

@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "tenreg",
+	"version": "${version}",
+	"name": "Tenreg",
+	"description": "Register stuff",
+	"authors": [
+		"Farpo"
+	],
+	"contact": {
+		"homepage": "https://nexusrealms.de",
+		"sources": "https://github.com/Nexusrealms/tenreg"
+	},
+	"accessWidener" : "tenreg.accesswidener",
+	"license": "MIT",
+	"icon": "assets/tenreg/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"de.nexusrealms.tenreg.Tenreg"
+		],
+		"client": [
+			"de.nexusrealms.tenreg.client.TenregClient"
+		]
+	},
+	"mixins": [
+		"tenreg.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

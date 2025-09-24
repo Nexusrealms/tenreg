@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "testmod:block/test_block_1_1"
+      },
+      {
+        "model": "testmod:block/test_block_1_2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+// 1.21.8	-999999999-01-01T00:00:00	Tenreg Test Mod/Model Definitions
+b2942e08a4a82f49d880031cd82d5c994bf7f188 assets/testmod/blockstates/test_block_1.json
+ed24e15b669b0f4e0e25654fb52907ba0778ad61 assets/testmod/blockstates/test_block_2.json
+ccad20733359c80bcc79a5082c79ebbe18ec2235 assets/testmod/blockstates/test_block_3.json
+ed4e993e1170babbc3a04cef5d120717bd9949a5 assets/testmod/items/test1.json
+ed63b8bcb615f078a20a2c9e375e1c28e9ec3e12 assets/testmod/items/test2.json
+458639096ccebb18b6ffc7c4467a0438c445a709 assets/testmod/items/test_block_1.json
+6f2a8e733cf6d469ca16cd6f3003eab912125515 assets/testmod/items/test_block_2.json
+a91c6b643b5199b97503e82c414aa4cce46722d8 assets/testmod/items/test_block_3.json
+f7f2ba74e6207d15299f172249b5214ff1119401 assets/testmod/models/block/test_block_1_1.json
+e4a8f33b30003222ea1645bc45a3d20b0dcc84a2 assets/testmod/models/block/test_block_1_2.json
+5384505e9dfda8e4568bd43af36c28b025f6702e assets/testmod/models/block/test_block_2_1.json
+591e53619179d366394775328412f60c44d61857 assets/testmod/models/block/test_block_2_2.json
+35dfb103d3df93c64aec411205a1856536c1ceaf assets/testmod/models/block/test_block_3.json
+e3de7101c0eb4ba3a3f21dc02099b944af3fc2ba assets/testmod/models/item/test1.json
+9cb0242810a26c185284b3330654b4be1ea91b67 assets/testmod/models/item/test2.json
+811e227add95464f47386005f874536b7332e9a3 assets/testmod/models/item/test_block_1.json
+8d45d8e8f4e5b69647f624c27959cca69758dc07 assets/testmod/models/item/test_block_2.json
+df2b534a9e4ef17f8bd1bb4c4dc4eea6efff65d1 assets/testmod/models/item/test_block_3.json
