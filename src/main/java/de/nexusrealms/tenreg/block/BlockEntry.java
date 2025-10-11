@@ -6,6 +6,7 @@ import de.nexusrealms.tenreg.data.RecipeMaker;
 import de.nexusrealms.tenreg.data.TranslationMaker;
 import de.nexusrealms.tenreg.data.TranslationKeyProvider;
 import de.nexusrealms.tenreg.data.functions.BlockModeler;
+import de.nexusrealms.tenreg.data.functions.ItemModeler;
 import de.nexusrealms.tenreg.data.interfaces.*;
 import de.nexusrealms.tenreg.data.providers.TenregBlockLoot;
 import de.nexusrealms.tenreg.data.providers.TenregBlockTags;
@@ -39,7 +40,7 @@ import java.util.function.*;
 
 public class BlockEntry<T extends Block> extends RegEntry<T> implements ItemConvertible, TranslationKeyProvider, EntryWithBlockTag, EntryWithBlockModel, EntryWithTranslation, EntryWithBlockLoot {
     @Nullable
-    private final BiConsumer<BlockEntry<T>, BlockStateModelGenerator> model;
+    private final BlockModeler<T> model;
     @Nullable @Getter
     private final TranslationMaker translation;
     @Nullable
@@ -52,7 +53,7 @@ public class BlockEntry<T extends Block> extends RegEntry<T> implements ItemConv
     private final Consumer<BlockEntry<T>> clientCallback;
     @Getter
     private final List<TagKey<Block>> tags;
-    protected BlockEntry(SubReg<T> owner, RegistryKey<T> key, T value, List<TagKey<Block>> tags, Consumer<BlockEntry<T>> callback, Consumer<BlockEntry<T>> clientCallback, @Nullable BiConsumer<BlockEntry<T>, BlockStateModelGenerator> model, @Nullable TranslationMaker translation, @Nullable BiConsumer<BlockEntry<T>, TenregBlockLoot> loot) {
+    protected BlockEntry(SubReg<T> owner, RegistryKey<T> key, T value, List<TagKey<Block>> tags, Consumer<BlockEntry<T>> callback, Consumer<BlockEntry<T>> clientCallback, @Nullable BlockModeler<T> model, @Nullable TranslationMaker translation, @Nullable BiConsumer<BlockEntry<T>, TenregBlockLoot> loot) {
         super(owner, key, value);
         this.model = model;
         this.translation = translation;
@@ -92,7 +93,7 @@ public class BlockEntry<T extends Block> extends RegEntry<T> implements ItemConv
 
     @Override
     public void accept(BlockStateModelGenerator generator) {
-        if(model != null) model.accept(this, generator);
+        if(model != null) model.generate(this, generator);
     }
 
     @Override
@@ -120,7 +121,7 @@ public class BlockEntry<T extends Block> extends RegEntry<T> implements ItemConv
         }
 
         @Setter
-        private BiConsumer<BlockEntry<T>, BlockStateModelGenerator> model;
+        private BlockModeler<T> model;
         @Setter @Nullable
         private TranslationMaker translation;
         @Setter
@@ -206,7 +207,7 @@ public class BlockEntry<T extends Block> extends RegEntry<T> implements ItemConv
                     .constructor(settings -> new BlockItem(tBlockEntry.getValue(), settings))
                     .translation(tBlockEntry.getTranslation());
                 if(FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT){
-                    builder.model((itemItemEntry, itemModelGenerator) -> itemModelGenerator.output.accept(itemItemEntry.asItem(), ItemModels.basic(tBlockEntry.getKey().getValue().withPrefixedPath("block/"))));
+                    builder.model(ItemModeler.block(tBlockEntry));
                 }
             });
 

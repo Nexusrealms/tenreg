@@ -2,10 +2,10 @@
   "variants": {
     "": [
       {
-        "model": "testmod:block/test_block_2_1"
+        "model": "testmod:block/test_block_20"
       },
       {
-        "model": "testmod:block/test_block_2_2"
+        "model": "testmod:block/test_block_21"
       }
     ]
   }

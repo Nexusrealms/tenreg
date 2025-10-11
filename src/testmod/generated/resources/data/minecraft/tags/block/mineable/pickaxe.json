@@ -1,7 +1,7 @@
 {
   "values": [
-    "testmod:test_block_2",
     "testmod:test_block_1",
+    "testmod:test_block_2",
     "testmod:test_block_3"
   ]
 }

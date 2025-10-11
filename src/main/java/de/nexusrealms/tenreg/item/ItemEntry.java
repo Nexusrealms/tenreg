@@ -5,6 +5,7 @@ import de.nexusrealms.tenreg.SubReg;
 import de.nexusrealms.tenreg.data.TranslationMaker;
 import de.nexusrealms.tenreg.data.RecipeMaker;
 import de.nexusrealms.tenreg.data.TranslationKeyProvider;
+import de.nexusrealms.tenreg.data.functions.ItemModeler;
 import de.nexusrealms.tenreg.data.interfaces.EntryWithItemTag;
 import de.nexusrealms.tenreg.data.interfaces.EntryWithItemModel;
 import de.nexusrealms.tenreg.data.interfaces.EntryWithTranslation;
@@ -41,7 +42,7 @@ import java.util.function.Supplier;
 
 public class ItemEntry<T extends Item> extends RegEntry<T> implements ItemConvertible, TranslationKeyProvider, EntryWithItemTag, EntryWithItemModel, EntryWithRecipe, EntryWithTranslation {
     @Nullable
-    private final BiConsumer<ItemEntry<T>, ItemModelGenerator> model;
+    private final ItemModeler<T> model;
     @Nullable
     private final TranslationMaker translation;
     @Nullable
@@ -52,7 +53,7 @@ public class ItemEntry<T extends Item> extends RegEntry<T> implements ItemConver
     private final Consumer<ItemEntry<T>> clientCallback;
     @Getter
     private final List<TagKey<Item>> tags;
-    protected ItemEntry(SubReg<T> owner, RegistryKey<T> key, T value, List<TagKey<Item>> tags, Consumer<ItemEntry<T>> callback, Consumer<ItemEntry<T>> clientCallback, @Nullable BiConsumer<ItemEntry<T>, ItemModelGenerator> model, @Nullable TranslationMaker translation, @Nullable RecipeMaker<ItemEntry<T>> recipeMaker) {
+    protected ItemEntry(SubReg<T> owner, RegistryKey<T> key, T value, List<TagKey<Item>> tags, Consumer<ItemEntry<T>> callback, Consumer<ItemEntry<T>> clientCallback, @Nullable ItemModeler<T> model, @Nullable TranslationMaker translation, @Nullable RecipeMaker<ItemEntry<T>> recipeMaker) {
         super(owner, key, value);
         this.model = model;
         this.translation = translation;
@@ -88,7 +89,7 @@ public class ItemEntry<T extends Item> extends RegEntry<T> implements ItemConver
 
     @Override
     public void accept(ItemModelGenerator generator) {
-        if(model != null) model.accept(this, generator);
+        if(model != null) model.generate(this, generator);
     }
 
     @Override
@@ -113,7 +114,7 @@ public class ItemEntry<T extends Item> extends RegEntry<T> implements ItemConver
             tags = new ArrayList<>();
         }
         @Setter
-        private BiConsumer<ItemEntry<T>, ItemModelGenerator> model;
+        private ItemModeler<T> model;
         @Setter
         private TranslationMaker translation;
         @Setter
@@ -161,10 +162,10 @@ public class ItemEntry<T extends Item> extends RegEntry<T> implements ItemConver
             return this;
         }
         public Builder<T> simpleModel(){
-            return model((itemEntry, itemModelGenerator) -> itemModelGenerator.register(itemEntry.asItem(), Models.GENERATED));
+            return model(ItemModeler.simple());
         }
         public Builder<T> noModel(){
-            return model((tItemEntry, itemModelGenerator) -> {});
+            return model(null);
         }
         public Builder<T> name(String name){
             return translation(TranslationMaker.simple(name));
