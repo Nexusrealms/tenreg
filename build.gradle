@@ -63,8 +63,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	compileOnly("org.projectlombok:lombok:1.18.38")
-	annotationProcessor("org.projectlombok:lombok:1.18.38")
+	compileOnly("org.projectlombok:lombok:1.18.42")
+	annotationProcessor("org.projectlombok:lombok:1.18.42")
 	
 }
 

@@ -7,7 +7,7 @@ import net.minecraft.registry.tag.TagKey;
 
 import java.util.function.Consumer;
 
-public interface BlockTransformers {
+public interface BlockToolTransformers {
     @SafeVarargs
     static <T extends Block> Consumer<BlockEntry.Builder<T>> mineableRequiriesTool(TagKey<Block>... blockTag){
         return tBuilder -> tBuilder.settingsUpdater(AbstractBlock.Settings::requiresTool)
@@ -22,6 +22,9 @@ public interface BlockTransformers {
     static  <T extends Block> Consumer<BlockEntry.Builder<T>> shovelOnly(){
         return mineableRequiriesTool(BlockTags.PICKAXE_MINEABLE);
     }
+    static  <T extends Block> Consumer<BlockEntry.Builder<T>> hoeOnly(){
+        return mineableRequiriesTool(BlockTags.HOE_MINEABLE);
+    }
     @SafeVarargs
     static <T extends Block> Consumer<BlockEntry.Builder<T>> mineableOptionalTool(TagKey<Block>... blockTag){
         return tBuilder -> tBuilder.tag(blockTag);
@@ -34,5 +37,8 @@ public interface BlockTransformers {
     }
     static  <T extends Block> Consumer<BlockEntry.Builder<T>> shovelHelps(){
         return mineableOptionalTool(BlockTags.PICKAXE_MINEABLE);
+    }
+    static  <T extends Block> Consumer<BlockEntry.Builder<T>> hoeHelps(){
+        return mineableOptionalTool(BlockTags.HOE_MINEABLE);
     }
 }

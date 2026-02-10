@@ -2,7 +2,7 @@ package de.nexusrealms.tenreg.testmod;
 
 import de.nexusrealms.tenreg.block.BlockEntry;
 import de.nexusrealms.tenreg.block.BlockReg;
-import de.nexusrealms.tenreg.block.BlockTransformers;
+import de.nexusrealms.tenreg.block.BlockToolTransformers;
 import de.nexusrealms.tenreg.data.functions.BlockModeler;
 import de.nexusrealms.tenreg.data.functions.ItemModeler;
 import net.minecraft.block.AbstractBlock;
@@ -14,7 +14,7 @@ public class ModBlocks {
     public static final BlockEntry.Builder<Block> TEST_BUILDER = BLOCKS.builder()
             .constructor(Block::new)
             .settingsUpdater(AbstractBlock.Settings::replaceable)
-            .transform(BlockTransformers.pickaxeOnly())
+            .transform(BlockToolTransformers.pickaxeOnly())
             .dropsSelf()
             .model(BlockModeler.multiSimpleCubeAll("0", "1"))
             .simpleItem()
